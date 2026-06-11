@@ -1,13 +1,18 @@
 <?php
-class sinhvien
+require_once '../app/core/controller.php';
+class sinhvien extends controller
 {
-  public function index()
-  {
-    require_once "../view/sinhvien/index.php";
-  }
+    public function index()
+    {
+        $sinhvienModel = $this->model('sinhvienModel');
+        $sinhviens = $sinhvienModel->getAllSinhvien();
 
-  public function create()
-  {
-    require_once "../view/sinhvien/create.php";
-  }
+        $this->view("sinhvien/index", ['sinhviens' => $sinhviens, 'title' => 'Danh sach sinh vien']);
+    }
+
+    public function create()
+    {
+
+        require_once "../app/views/sinhvien/create.php";
+    }
 }
